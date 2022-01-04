@@ -15,6 +15,10 @@ import dj_database_url
 import os
 import psycopg2
 
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,13 +33,13 @@ SECRET_KEY = 'django-insecure-21#suw&z)t3wx115(zjrw21&a7(p3^ks3p69avo-9g0xkh4cew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'polar-savannah-86132.herokuapp.com']
+# ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'kashportfolio.herokuapp.com']
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'jobs.apps.JobsConfig',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
@@ -91,9 +95,9 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
-# db_from_env = dj_database_url.config(conn_max_age=600)
-# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -128,20 +132,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'portfolio/static',
 ]
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
-
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
-
-DATABASE_URL = os.environ['DATABASE_URL']
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
