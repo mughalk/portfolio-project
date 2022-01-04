@@ -33,8 +33,7 @@ SECRET_KEY = 'django-insecure-21#suw&z)t3wx115(zjrw21&a7(p3^ks3p69avo-9g0xkh4cew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'kashportfolio.herokuapp.com']
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -143,8 +142,8 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
