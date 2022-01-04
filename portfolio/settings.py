@@ -27,13 +27,13 @@ SECRET_KEY = 'django-insecure-21#suw&z)t3wx115(zjrw21&a7(p3^ks3p69avo-9g0xkh4cew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'kashportfolio.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'vast-taiga-26222.herokuapp.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    whitenoise.runserver_nostatic,
+    'whitenoise.runserver_nostatic',
     'jobs.apps.JobsConfig',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
